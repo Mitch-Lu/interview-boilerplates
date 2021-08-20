@@ -12,8 +12,8 @@
   <properties>
     <dropwizard.version>[1.3.25]</dropwizard.version>
     <java.version>14</java.version>
-    <junit.version>[4.13.2]</junit.version>
-    <lombok.version>[1.18.20]</lombok.version>
+    <junit.version>4.13.2</junit.version>
+    <lombok.version>1.18.20</lombok.version>
     <mockito.version>[3.10.0]</mockito.version>
   </properties>
 
@@ -60,6 +60,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
         <executions>
           <execution>
             <phase>package</phase>

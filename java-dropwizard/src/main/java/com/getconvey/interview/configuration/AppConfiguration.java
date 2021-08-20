@@ -7,6 +7,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AppConfiguration extends Configuration {
-
     private String message;
+    private String filePath;
 }

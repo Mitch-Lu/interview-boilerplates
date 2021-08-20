@@ -2,8 +2,7 @@ package com.getconvey.interview;
 
 import com.getconvey.interview.configuration.AppConfiguration;
 import com.getconvey.interview.resources.AppHealthCheck;
-import com.getconvey.interview.resources.HelloWorldResource;
-
+import com.getconvey.interview.resources.SentenceSearchResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
@@ -14,8 +13,7 @@ public class App extends Application<AppConfiguration> {
     }
 
     public void run(AppConfiguration configuration, Environment environment) throws Exception {
-
-        environment.jersey().register(new HelloWorldResource(configuration.getMessage()));
+        environment.jersey().register(new SentenceSearchResource(configuration.getFilePath()));
         environment.healthChecks().register("AppHealthCheck", new AppHealthCheck());
     }
 }

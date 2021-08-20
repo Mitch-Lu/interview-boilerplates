@@ -1,0 +1,8 @@
+# Integration test configuration.
+filePath: src/main/resources/sentences-04.txt
+
+server:
+  type: simple
+  connector:
+    type: http
+    port: 9080

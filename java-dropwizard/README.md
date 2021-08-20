@@ -11,12 +11,13 @@ mvn clean verify
 ./run.sh
 ```
 
-The boilerplate code exposes a single endpoint at `localhost:8080/helloworld` and a health check
-at `localhost:8081/healthcheck`. The endpoint accepts a get request and returns a json response.
+The exercise code exposes a single endpoint at `localhost:8080/sentences/count` and a health check
+at `localhost:8081/healthcheck`. 
+The endpoint accepts a get request with a required QueryParam word and returns a json response.
 
-`curl -i localhost:8080/helloworld`
+`curl -i localhost:8080/sentences/count?word=eggplant`
 
-will return (excepting the dates)
+will return
 
     HTTP/1.1 200 OK
     Date: Sat, 22 May 2021 18:55:16 GMT
