@@ -45,6 +45,7 @@ public class SentenceSearchResource {
                     final int count = StringUtils.countMatches(line.toLowerCase(), word.toLowerCase());
                     return new Sentence(line, count);
                 })
+                .filter(sentence -> sentence.getCount() > 0)
                 .sorted(Comparator.comparingInt(Sentence::getCount).thenComparing(Sentence::getSentence))
                 .collect(Collectors.toList());
             return Response.ok(new SentenceSearch(word, sentences), MediaType.APPLICATION_JSON).build();
