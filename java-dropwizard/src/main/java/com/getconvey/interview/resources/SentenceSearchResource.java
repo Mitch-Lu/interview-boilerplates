@@ -1,6 +1,5 @@
 package com.getconvey.interview.resources;
 
-import com.getconvey.interview.model.Message;
 import com.getconvey.interview.model.Sentence;
 import com.getconvey.interview.model.SentenceSearch;
 import org.apache.commons.lang3.StringUtils;
@@ -8,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;

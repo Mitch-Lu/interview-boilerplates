@@ -1,3 +1,2 @@
 # Integration test configuration.
-message: Hello world
 filePath: src/main/resources/sentences-02.txt

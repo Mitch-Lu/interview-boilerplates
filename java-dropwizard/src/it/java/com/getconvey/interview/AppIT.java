@@ -2,16 +2,13 @@ package com.getconvey.interview;
 
 import com.getconvey.interview.configuration.AppConfiguration;
 import com.getconvey.interview.model.SentenceSearch;
-import io.dropwizard.jersey.jackson.JacksonMessageBodyProvider;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.glassfish.jersey.client.ClientConfig;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +34,8 @@ public class AppIT {
     }
 
     @Test
-    public void wordCount() {
+    public void wordCountOnFile02() {
+        assertThat(RULE_1.getConfiguration().getFilePath()).isEqualTo("src/main/resources/sentences-02.txt");
         final String queryParam = "eggplant";
         final Response response = client_1.target(
                 String.format("http://localhost:%d/sentences/count", RULE_1.getLocalPort()))
@@ -80,6 +78,7 @@ public class AppIT {
 
     @Test()
     public void fileNotFound() {
+        assertThat(RULE_2.getConfiguration().getFilePath()).isEqualTo("src/main/resources/sentences-04.txt");
         final String queryParam = "eggplant";
         final Response response = client_2.target(
                 String.format("http://localhost:%d/sentences/count", RULE_2.getLocalPort()))
