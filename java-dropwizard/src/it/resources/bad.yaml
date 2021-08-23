@@ -1,5 +1,5 @@
 # Integration test configuration.
-filePath: src/main/resources/sentences-04.txt
+filePath: src/it/resources/file-02.txt
 
 server:
   type: simple

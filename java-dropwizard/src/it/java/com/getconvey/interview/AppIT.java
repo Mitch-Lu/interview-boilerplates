@@ -34,8 +34,8 @@ public class AppIT {
     }
 
     @Test
-    public void wordCountOnFile02() {
-        assertThat(RULE_1.getConfiguration().getFilePath()).isEqualTo("src/main/resources/sentences-02.txt");
+    public void wordCountOnFile01() {
+        assertThat(RULE_1.getConfiguration().getFilePath()).isEqualTo("src/it/resources/file-01.txt");
         final String queryParam = "eggplant";
         final Response response = client_1.target(
                 String.format("http://localhost:%d/sentences/count", RULE_1.getLocalPort()))
@@ -78,7 +78,7 @@ public class AppIT {
 
     @Test()
     public void fileNotFound() {
-        assertThat(RULE_2.getConfiguration().getFilePath()).isEqualTo("src/main/resources/sentences-04.txt");
+        assertThat(RULE_2.getConfiguration().getFilePath()).isEqualTo("src/it/resources/file-02.txt");
         final String queryParam = "eggplant";
         final Response response = client_2.target(
                 String.format("http://localhost:%d/sentences/count", RULE_2.getLocalPort()))
