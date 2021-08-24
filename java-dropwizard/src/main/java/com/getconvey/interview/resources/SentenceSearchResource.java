@@ -14,7 +14,9 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringTokenizer;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Path("/sentences")
 @Produces(MediaType.APPLICATION_JSON)
@@ -41,11 +43,14 @@ public class SentenceSearchResource {
             }
 
             final List<Sentence> sentences = Files.newBufferedReader(Paths.get(resourcePath)).lines()
-                .map(line -> {
-                    final int count = StringUtils.countMatches(line.toLowerCase(), word.toLowerCase());
-                    return new Sentence(line, count);
+                .flatMap(line -> {
+                    final int wordCount = getWordCount(word, line);
+                    if (wordCount > 0) {
+                        return Stream.of(new Sentence(line, wordCount));
+                    } else {
+                        return Stream.empty();
+                    }
                 })
-                .filter(sentence -> sentence.getCount() > 0)
                 .sorted(Comparator.comparingInt(Sentence::getCount).thenComparing(Sentence::getSentence))
                 .collect(Collectors.toList());
             return Response.ok(new SentenceSearch(word, sentences), MediaType.APPLICATION_JSON).build();
@@ -54,5 +59,19 @@ public class SentenceSearchResource {
         } catch (IOException e) {
             throw new InternalServerErrorException("Cannot load resource: " + e.getMessage(), e);
         }
+    }
+
+    private int getWordCount(String word, String line) {
+        int wordCount = 0;
+        final StringTokenizer tokenizer = new StringTokenizer(
+            line.replaceAll("[^a-zA-Z0-9]", StringUtils.SPACE),
+            StringUtils.SPACE);
+        while (tokenizer.hasMoreTokens()) {
+            final String token = tokenizer.nextToken();
+            if (StringUtils.equalsIgnoreCase(token, word)) {
+                wordCount++;
+            }
+        }
+        return wordCount;
     }
 }
